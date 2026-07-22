@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <title>NoteTaker</title>
+    <link rel="stylesheet" href="styles.css" />
+
+    
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+
+
+     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+
+     
+</head>
+
+<body>
+
+<button id="openFolder">
+    Open Notes Folder
+</button>
+
+
+    <div id="counter">
+        words: <span id="words">0</span>
+        /
+        characters: <span id="chars">0</span>
+    </div>
+    
+    <div class="editor">
+        <textarea id="text"></textarea>
+
+        <div id="preview"></div>
+    </div>
+
+    <!-- <div id="editor" contenteditable="true"></div> -->
+     
+
+    <!-- <textarea id="text" autofocus="1"></textarea> -->
+
+    <script src="script.js"></script>
+    
+</body>
+</html>
