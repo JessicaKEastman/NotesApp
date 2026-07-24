@@ -14,9 +14,9 @@
         };
     </script>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
-
+    <meta charset="UTF-8">
      
 </head>
 
@@ -25,6 +25,10 @@
 <button id="openFolder">
     Open Notes Folder
 </button>
+<button id="newNote">
+New Note
+</button>
+<button id="newFolder">New Folder</button>
 
 
     <div id="counter">
@@ -33,11 +37,25 @@
         characters: <span id="chars">0</span>
     </div>
     
-    <div class="editor">
+    <!-- <div class="editor">
         <textarea id="text"></textarea>
 
         <div id="preview"></div>
-    </div>
+    </div> -->
+    <div class="layout">
+
+<div id="sidebar"></div>
+<div id="resizer"></div>
+
+<div class="editor">
+
+<textarea id="text"></textarea>
+
+<div id="preview"></div>
+
+</div>
+
+</div>
 
     <!-- <div id="editor" contenteditable="true"></div> -->
      

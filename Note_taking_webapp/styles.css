@@ -24,10 +24,43 @@ body {
     border-top: 1px solid #999;
 } */
 
+.layout {
+    display: flex;
+}
+
+#sidebar {
+    width: 250px;
+    border: 1px solid black;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+#sidebar div {
+padding: 4px;
+}
+
+#sidebar div:hover {
+background-color: #e8e8e8;
+}
+#resizer {
+    width: 5px;
+    background: #ccc;
+    cursor: col-resize;
+}
+.selected-note {
+background-color: #cce5ff;
+}
+
 .editor {
+    flex: 1;
+    display: flex;
+}
+
+/* .editor {
     display: flex;
     gap: 20px;
-}
+} */
 
 textarea {
     width: 50%;
@@ -43,10 +76,16 @@ textarea {
     padding: 10px;
 }
 
-/* #editor {
-    min-height: 400px;
-    padding: 1rem;
-    border: 1px solid #ccc;
-    outline: none;
-} */
+#preview h1 {
+border-bottom: 1px solid #ccc;
+}
+
+#preview code {
+background: #eee;
+padding: 2px 4px;
+}
+
+#preview blockquote {
+border-left: 4px solid #ccc;
+}
 
