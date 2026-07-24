@@ -11,11 +11,38 @@ textarea.addEventListener("input", function(ev) {
     update_counts(ev.target.value);
 });
 
-// window.addEventListener("load", function(ev) {
-//     var text = localStorage.getItem("text") || "";
-//     textarea.value = text;
-//     update_counts(text);
-// });
+window.addEventListener("load", function(ev) {
+    if (!currentFile) {
+    preview.innerHTML = `
+<h1>Welcome to NoteTaker</h1>
+
+<p>
+A local-first Markdown notebook for mathematics,
+science, and research notes.
+</p>
+
+<hr>
+
+<h2>Getting Started</h2>
+
+<ol>
+    <li>Click <strong>Open Notes Folder</strong>.</li>
+    <li>Select or create a notes directory.</li>
+    <li>Open an existing note or create a new one.</li>
+</ol>
+
+<h2>Supported Features</h2>
+
+<ul>
+    <li>Markdown preview</li>
+    <li>MathJax equations</li>
+    <li>Automatic saving</li>
+    <li>PDF export</li>
+    <li>Folder organisation</li>
+</ul>
+`;
+    }
+});
 
 function update_counts(text) {
     chars.innerHTML = text.length;
