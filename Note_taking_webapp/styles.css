@@ -74,6 +74,7 @@ textarea {
     font-size: 16pt;
     border: 1px solid #ccc;
     padding: 10px;
+    font-family: "Segoe UI", sans-serif;
 }
 
 #preview h1 {
@@ -87,5 +88,20 @@ padding: 2px 4px;
 
 #preview blockquote {
 border-left: 4px solid #ccc;
+}
+
+@media print {
+
+    #sidebar,
+    #resizer,
+    textarea,
+    button,
+    #counter {
+        display: none;
+    }
+
+    #preview {
+        width: 100%;
+    }
 }
 

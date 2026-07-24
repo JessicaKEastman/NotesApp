@@ -70,6 +70,10 @@ async function renderPreview() {
         textarea.value
     );
 
+    if (window.MathJax?.texReset) {
+        MathJax.texReset();
+        }
+
     if (window.MathJax?.typesetPromise) {
         await MathJax.typesetPromise([preview]);
     }
@@ -164,6 +168,14 @@ document
         document.getElementById("sidebar").innerHTML = "";
 
         await buildTree(notesRoot);
+
+    });
+
+    document
+    .getElementById("exportPdf")
+    .addEventListener("click", () => {
+
+        window.print();
 
     });
 
