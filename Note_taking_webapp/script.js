@@ -321,6 +321,9 @@ async function openNote(fileHandle) {
     const content = await file.text();
 
     document.getElementById("text").value = content;
+    update_counts(content);
+
+    await renderPreview();
 }
 
 
@@ -337,6 +340,8 @@ async function saveNote(fileHandle, content) {
 
 const sidebar = document.getElementById("sidebar");
 const resizer = document.getElementById("resizer");
+const resizertext = document.getElementById("resizertext");
+
 
 const savedWidth = localStorage.getItem("sidebarWidth");
 
@@ -347,10 +352,24 @@ sidebar.style.width = savedWidth + "px";
 }
 
 let isResizing = false;
+let isResizingtext = false;
+
 
 resizer.addEventListener("mousedown", () => {
     isResizing = true;
 });
+let startX;
+let startWidth;
+
+resizertext.addEventListener("mousedown", (e) => {
+
+    isResizingtext = true;
+
+    startX = e.clientX;
+
+    startWidth = textarea.offsetWidth;
+});
+
 
 // document.addEventListener("mousemove", (e) => {
 //     if (!isResizing)
@@ -361,16 +380,54 @@ resizer.addEventListener("mousedown", () => {
 
 document.addEventListener("mouseup", () => {
     isResizing = false;
+    isResizingtext = false;
+
 });
 
+// document.addEventListener("mousemove", (e) => {
+//     if (!isResizing)
+//         return;
+
+//     const width = Math.max(150, e.clientX);
+
+//     sidebar.style.width = width + "px";
+//     localStorage.setItem("sidebarWidth", width);
+//     if (isResizingtext) {
+
+//     const width =
+//         startWidth + (e.clientX - startX);
+
+//     textarea.style.width =
+//         Math.max(200, width) + "px";
+// }
+// });
+
 document.addEventListener("mousemove", (e) => {
-    if (!isResizing)
-        return;
 
-    const width = Math.max(150, e.clientX);
+    if (isResizing) {
 
-    sidebar.style.width = width + "px";
-    localStorage.setItem("sidebarWidth", width);
+        const width = Math.max(150, e.clientX);
+
+        sidebar.style.width = width + "px";
+
+        localStorage.setItem("sidebarWidth", width);
+    }
+
+    if (isResizingtext) {
+
+        const width =
+            startWidth + (e.clientX - startX);
+
+        const maxWidth =
+    document.querySelector(".editor").offsetWidth - 200;
+
+textarea.style.width =
+    Math.max(
+        200,
+        Math.min(width, maxWidth)
+    ) + "px";
+    }
+
 });
 
 

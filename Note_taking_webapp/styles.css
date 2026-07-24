@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     display: grid;
-    min-height: 100vh;
+    min-height: 100%;
     grid-template-rows: min-content 1fr;
 }
 
@@ -25,15 +25,17 @@ body {
 } */
 
 .layout {
-    display: flex;
+display: flex;
+height: calc(100vh - 70px);
 }
 
 #sidebar {
     width: 250px;
     border: 1px solid black;
-    min-height: 500px;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
 }
 
 #sidebar div {
@@ -48,6 +50,8 @@ background-color: #e8e8e8;
     background: #ccc;
     cursor: col-resize;
 }
+
+
 .selected-note {
 background-color: #cce5ff;
 }
@@ -55,6 +59,8 @@ background-color: #cce5ff;
 .editor {
     flex: 1;
     display: flex;
+    height: 100%;
+    overflow: hidden;
 }
 
 /* .editor {
@@ -63,18 +69,34 @@ background-color: #cce5ff;
 } */
 
 textarea {
-    width: 50%;
-    height: 80vh;
+    height: 100%;
+    resize: none;
+    box-sizing: border-box;
+    width: 500px;
+    flex-shrink: 0;
+}
+#resizertext {
+    width: 5px;
+    background: #ccc;
+    cursor: col-resize;
 }
 
 #preview {
-    width: 50%;
-    height: 80vh;
+    height: 100%;
     overflow-y: auto;
+    overflow-x: auto;
     font-size: 16pt;
     border: 1px solid #ccc;
     padding: 10px;
     font-family: "Segoe UI", sans-serif;
+    flex: 1;
+    min-width: 0;
+    box-sizing: border-box;
+}
+#resizerprev {
+    width: 5px;
+    background: #ccc;
+    cursor: col-resize;
 }
 
 #preview h1 {
@@ -88,6 +110,16 @@ padding: 2px 4px;
 
 #preview blockquote {
 border-left: 4px solid #ccc;
+}
+
+#preview mjx-container {
+max-width: 100%;
+}
+
+#preview mjx-container[display="true"] {
+display: block;
+overflow-x: auto;
+overflow-y: hidden;
 }
 
 @media print {
