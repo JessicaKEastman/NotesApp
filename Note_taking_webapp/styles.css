@@ -134,6 +134,19 @@ overflow-y: hidden;
 
     #preview {
         width: 100%;
+        height: auto !important;
+        overflow: visible !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    body{
+        overflow: visible;
+    }
+    .layout,
+    .editor {
+    overflow: visible;
     }
 }
 
