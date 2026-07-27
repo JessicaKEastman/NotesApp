@@ -62,6 +62,8 @@ function debounce(fn, delay) {
     };
 }
 
+
+
 textarea.addEventListener(
     "input",
     debounce(async () => {
@@ -93,6 +95,11 @@ const preview = document.getElementById("preview");
 
 async function renderPreview() {
 
+    const wasNearBottom =
+        preview.scrollHeight -
+        preview.scrollTop -
+        preview.clientHeight < 100;
+
     preview.innerHTML = marked.parse(
         textarea.value
     );
@@ -104,11 +111,16 @@ async function renderPreview() {
     if (window.MathJax?.typesetPromise) {
         await MathJax.typesetPromise([preview]);
     }
+    if (wasNearBottom) {
+        preview.scrollTop = preview.scrollHeight;
+    }
 }
 
-textarea.addEventListener("input", renderPreview);
+const debouncedRender =
+    debounce(renderPreview, 1000);
+textarea.addEventListener("input", debouncedRender);
 
-renderPreview();
+// renderPreview();
 
 
 let notesRoot = null;
