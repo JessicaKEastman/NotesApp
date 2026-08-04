@@ -103,6 +103,25 @@ async function renderPreview() {
     preview.innerHTML = marked.parse(
         textarea.value
     );
+    console.log(preview.innerHTML);
+
+    const images = preview.querySelectorAll("img");
+
+    for (const img of images) {
+
+        const filename = img.getAttribute("src");
+
+        const fileHandle =
+            await currentFolder.getFileHandle(filename);
+
+        const file =
+            await fileHandle.getFile();
+
+        const url =
+            URL.createObjectURL(file);
+
+        img.src = url;
+    }
 
     if (window.MathJax?.texReset) {
         MathJax.texReset();
